@@ -83,7 +83,12 @@ document.querySelector('[data-list-items]').addEventListener('click', event => {
     if (!previewButton) return;
     const activeBook = matches.find(book => book.id === previewButton.dataset.preview);
     if(activeBook) {
-
+        document.querySelector('[data-list-active]').open = true
+        document.querySelector('[data-list-blur]').src = active.image
+        document.querySelector('[data-list-image]').src = active.image
+        document.querySelector('[data-list-title]').innerText = active.title
+        document.querySelector('[data-list-subtitle]').innerText = `${authors[active.author]} (${new Date(active.published).getFullYear()})`
+        document.querySelector('[data-list-description]').innerText = active.description
     }
 });
 
