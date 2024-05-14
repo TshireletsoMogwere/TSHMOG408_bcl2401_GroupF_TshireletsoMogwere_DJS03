@@ -25,27 +25,17 @@ let matches = books
   return element;
 }
 
+function renderBooks(bookList) {
+    const fragment = document.createDocumentFragment();
+    bookList.slice(0, BOOKS_PER_PAGE).forEach(book => {
+        const element = createPreviewButton(book);
+        fragment.appendChild(element);
+    });
 
 // Appends initial previews to the document
-document.querySelector('[data-list-items]').appendChild(starting)
-
-// Creates an option element for All Genres
-const genreHtml = document.createDocumentFragment()
-const firstGenreElement = document.createElement('option')
-firstGenreElement.value = 'any'
-firstGenreElement.innerText = 'All Genres'
-genreHtml.appendChild(firstGenreElement)
-
-// Iterates through genres and creates option elements
-for (const [id, name] of Object.entries(genres)) {
-    const element = document.createElement('option')
-    element.value = id
-    element.innerText = name
-    genreHtml.appendChild(element)
+document.querySelector('[data-list-items]').appendChild(fragment);
+document.querySelector('[data-list-items]').innerHTML = '';
 }
-
-// Appends genre option to search form
-document.querySelector('[data-search-genres]').appendChild(genreHtml)
 
 // Creates document fragment for author options
 const authorsHtml = document.createDocumentFragment()
