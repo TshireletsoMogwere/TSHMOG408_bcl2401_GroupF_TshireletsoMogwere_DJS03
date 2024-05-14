@@ -94,6 +94,11 @@ document.querySelector('[data-list-button]').addEventListener('click', () => {
     updateShowMoreButton()
 });
 
+// // Adding event listener to hide book details overlay when close button is clicked.
+document.querySelector('[data-list-close]').addEventListener('click', () => {
+    document.querySelector('[data-list-active]').open = false
+})
+
 document.querySelector('[data-list-items]').addEventListener('click', event => {
     const previewButton = event.target.closest('[data-preview]');
     if (!previewButton) return;
