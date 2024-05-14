@@ -11,14 +11,9 @@ let matches = books
     element.classList = 'preview';
     element.setAttribute('data-preview', id);
     element.innerHTML = `
-        <img
-            class="preview__image"
-            src="${image}"
-        />
-        
-        <div class="preview__info">
-            <h3 class="preview__title">${title}</h3>
-            <div class="preview__author">${authors[author]}</div>
+        <img class="preview__image" src="${image}"/>
+        <div class="preview__info"><h3 class="preview__title">${title}</h3>
+        <div class="preview__author">${authors[author]}</div>
         </div>
     `;
 
@@ -90,7 +85,8 @@ document.querySelector('[data-list-items]').addEventListener('click', event => {
     }
 });
 
-
+renderBooks(matches);
+updateShowMoreButton();
 
 
 // // Sets theme based on user's preference color scheme
