@@ -37,24 +37,14 @@ document.querySelector('[data-list-items]').appendChild(fragment);
 document.querySelector('[data-list-items]').innerHTML = '';
 }
 
-// Creates document fragment for author options
-const authorsHtml = document.createDocumentFragment()
-// Creates an option element for All Authors
-const firstAuthorElement = document.createElement('option')
-firstAuthorElement.value = 'any'
-firstAuthorElement.innerText = 'All Authors'
-authorsHtml.appendChild(firstAuthorElement)
-
-// Iterates through authors and creating option elements
-for (const [id, name] of Object.entries(authors)) {
-    const element = document.createElement('option')
-    element.value = id
-    element.innerText = name
-    authorsHtml.appendChild(element)
+function updateShowMoreButton() {
+    const remaining = Math.max(matches.length - (page * BOOKS_PER_PAGE), 0);
+    const button = document.querySelector('[data-list-button]');
+    button.innerText = `Show more (${remaining})`;
+    button.disabled = remaining <= 0;
 }
 
-// Appends author option to search form
-document.querySelector('[data-search-authors]').appendChild(authorsHtml)
+
 
 // Sets theme based on user's preference color scheme
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
