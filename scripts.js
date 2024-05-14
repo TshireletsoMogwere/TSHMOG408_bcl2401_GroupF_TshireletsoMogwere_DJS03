@@ -61,7 +61,34 @@ matches = result;
 renderBooks(matches);
 updateShowMoreButton();
 
-//
+// Add event listener
+document.querySelector('[data-search-form]').addEventListener('submit', event => {
+    event.preventDefault();
+    const formData = new formData(event.target);
+    const filters = Object.fromEntries(formData);
+    handleBookSearch(filters);
+    document.querySelector('[data-search-overlay]').open = false;
+});
+
+document.querySelector('[data-list-button]').addEventListener('click', () => {
+    const fragment = document.createDocumentFragment();
+    matches.slice(page * BOOKS_PER_PAGE, (page + 1) * BOOKS_PER_PAGE).forEach(book => {
+        const element = createPreviewButton(book);
+        fragment.appendChild(element);
+    });
+    document.querySelector('[data-lisy-items]').appendChild(fragment);
+    page += 1;
+    updateShowMoreButton()
+});
+
+document.querySelector('[data-list-items]').addEventListener('click', event => {
+    const previewButton = event.target.closet('[data-preview]');
+    if (!previewButton) return;
+    const activeBook = matches.find(book => book.id === previewButton.dataset.preview);
+    if(activeBook) {
+
+    }
+});
 
 
 
