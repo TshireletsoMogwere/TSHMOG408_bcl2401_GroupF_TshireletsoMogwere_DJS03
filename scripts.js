@@ -44,7 +44,16 @@ function updateShowMoreButton() {
     button.disabled = remaining <= 0;
 }
 
-
+function handleBookSearch(filters) {
+    const result = books.filter(book => {
+        const genreMatch = filters.genre === 'any' || book.genres.includes(filters.genre);
+        return (
+            (filters.title.trim() === '' || book.title.toLocaleLowerCase().includes(filters.title.toLowerCase())) &&
+            (filters.author === 'any' || books.author === filters.author) &&
+        genreMatch
+    )
+});
+};
 
 // Sets theme based on user's preference color scheme
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
