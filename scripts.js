@@ -59,6 +59,22 @@ updateShowMoreButton();
 }
 
 // Add event listener
+// Adds event listener to show setting overlay when search icon is clicked
+document.querySelector('[data-header-search]').addEventListener('click', () => {
+    document.querySelector('[data-search-overlay]').open = true 
+    document.querySelector('[data-search-title]').focus()
+})
+
+// Adds event listeners to hide search overlay when cancel button is clicked
+document.querySelector('[data-search-cancel]').addEventListener('click', () => {
+    document.querySelector('[data-search-overlay]').open = false
+})
+
+// Adding event listener to show settings overlay when settings icon is clicked.
+document.querySelector('[data-header-settings]').addEventListener('click', () => {
+    document.querySelector('[data-settings-overlay]').open = true 
+})
+
 document.querySelector('[data-search-form]').addEventListener('submit', event => {
     event.preventDefault();
     const formData = new formData(event.target);
@@ -126,11 +142,7 @@ updateShowMoreButton();
 //     document.querySelector('[data-settings-overlay]').open = false
 // })
 
-// // Adds event listener to show setting overlay when search icon is clicked
-// document.querySelector('[data-header-search]').addEventListener('click', () => {
-//     document.querySelector('[data-search-overlay]').open = true 
-//     document.querySelector('[data-search-title]').focus()
-// })
+
 
 // // Adding event listener to show settings overlay when settings icon is clicked.
 // document.querySelector('[data-header-settings]').addEventListener('click', () => {
