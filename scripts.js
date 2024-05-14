@@ -55,6 +55,12 @@ function handleBookSearch(filters) {
 });
 };
 
+// resets to first page
+page = 1;
+matches = result;
+renderBooks(matches);
+updateShowMoreButton();
+
 // Sets theme based on user's preference color scheme
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     document.querySelector('[data-settings-theme]').value = 'night'
