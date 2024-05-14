@@ -1,12 +1,12 @@
-import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
+import { books, authors, genres, BOOKS_PER_PAGE } from './data.js';
 
 // Initializes the page numbers and titles for the books and authors
 let page = 1;
-let matches = books
+let matches = books;
 
 // Iterates through matches and creates preview elements for first page
    function createPreviewButton(book) {
- const { author, id, image, title } = book;
+ const { id, image, title, author } = book;
     const element = document.createElement('button');
     element.classList = 'preview';
     element.setAttribute('data-preview', id);
@@ -28,8 +28,9 @@ function renderBooks(bookList) {
     });
 
 // Appends initial previews to the document
-document.querySelector('[data-list-items]').appendChild(fragment);
 document.querySelector('[data-list-items]').innerHTML = '';
+document.querySelector('[data-list-items]').appendChild(fragment);
+
 }
 
 function updateShowMoreButton() {
@@ -44,17 +45,18 @@ function handleBookSearch(filters) {
         const genreMatch = filters.genre === 'any' || book.genres.includes(filters.genre);
         return (
             (filters.title.trim() === '' || book.title.toLocaleLowerCase().includes(filters.title.toLowerCase())) &&
-            (filters.author === 'any' || books.author === filters.author) &&
+            (filters.author === 'any' || book.author === filters.author) &&
         genreMatch
-    )
+    );
 });
-};
+
 
 // resets to first page
 page = 1;
 matches = result;
 renderBooks(matches);
 updateShowMoreButton();
+}
 
 // Add event listener
 document.querySelector('[data-search-form]').addEventListener('submit', event => {
@@ -77,7 +79,7 @@ document.querySelector('[data-list-button]').addEventListener('click', () => {
 });
 
 document.querySelector('[data-list-items]').addEventListener('click', event => {
-    const previewButton = event.target.closet('[data-preview]');
+    const previewButton = event.target.closest('[data-preview]');
     if (!previewButton) return;
     const activeBook = matches.find(book => book.id === previewButton.dataset.preview);
     if(activeBook) {
