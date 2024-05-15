@@ -89,7 +89,7 @@ document.querySelector('[data-list-button]').addEventListener('click', () => {
         const element = createPreviewButton(book);
         fragment.appendChild(element);
     });
-    document.querySelector('[data-lisy-items]').appendChild(fragment);
+    document.querySelector('[data-list-items]').appendChild(fragment);
     page += 1;
     updateShowMoreButton()
 });
