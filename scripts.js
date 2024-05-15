@@ -92,6 +92,11 @@ document.querySelector('[data-settings-form]').addEventListener('submit', (event
     // Close settings overlay after theme change
     document.querySelector('[data-settings-overlay]').open = false;
 });
+
+// Set cancel button to false for setting icon
+document.querySelector('[data-settings-cancel]').addEventListener('click', () => {
+    document.querySelector('[data-settings-overlay]').open = false
+})
     
 
 document.querySelector('[data-search-form]').addEventListener('submit', event => {
