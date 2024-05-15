@@ -123,17 +123,18 @@ document.querySelector('[data-list-close]').addEventListener('click', () => {
     document.querySelector('[data-list-active]').open = false
 })
 
+
 document.querySelector('[data-list-items]').addEventListener('click', event => {
     const previewButton = event.target.closest('[data-preview]');
     if (!previewButton) return;
     const activeBook = matches.find(book => book.id === previewButton.dataset.preview);
     if(activeBook) {
         document.querySelector('[data-list-active]').open = true
-        document.querySelector('[data-list-blur]').src = active.image
-        document.querySelector('[data-list-image]').src = active.image
-        document.querySelector('[data-list-title]').innerText = active.title
-        document.querySelector('[data-list-subtitle]').innerText = `${authors[active.author]} (${new Date(active.published).getFullYear()})`
-        document.querySelector('[data-list-description]').innerText = active.description
+        document.querySelector('[data-list-blur]').src = activeBook.image
+        document.querySelector('[data-list-image]').src = activeBook.image
+        document.querySelector('[data-list-title]').innerText = activeBook.title
+        document.querySelector('[data-list-subtitle]').innerText = `${authors[activeBook.author]} (${new Date(activeBook.published).getFullYear()})`
+        document.querySelector('[data-list-description]').innerText = activeBook.description
     }
 });
 
