@@ -27,7 +27,7 @@ function renderBooks(bookList) {
         fragment.appendChild(element);
     });
 
-// Appends initial previews to the document
+// // Appends initial previews to the document
 document.querySelector('[data-list-items]').innerHTML = '';
 document.querySelector('[data-list-items]').appendChild(fragment);
 
@@ -65,6 +65,14 @@ document.querySelector('[data-header-search]').addEventListener('click', () => {
     document.querySelector('[data-search-title]').focus()
 })
 
+document.querySelector('[data-search-form]').addEventListener('submit', event => {
+    event.preventDefault();
+    const formData = new formData(event.target);
+    const filters = Object.fromEntries(formData);
+    handleBookSearch(filters);
+    document.querySelector('[data-search-overlay]').open = false;
+});
+
 // Adds event listeners to hide search overlay when cancel button is clicked
 document.querySelector('[data-search-cancel]').addEventListener('click', () => {
     document.querySelector('[data-search-overlay]').open = false
@@ -97,15 +105,7 @@ document.querySelector('[data-settings-form]').addEventListener('submit', (event
 document.querySelector('[data-settings-cancel]').addEventListener('click', () => {
     document.querySelector('[data-settings-overlay]').open = false
 })
-    
 
-document.querySelector('[data-search-form]').addEventListener('submit', event => {
-    event.preventDefault();
-    const formData = new formData(event.target);
-    const filters = Object.fromEntries(formData);
-    handleBookSearch(filters);
-    document.querySelector('[data-search-overlay]').open = false;
-});
 
 document.querySelector('[data-list-button]').addEventListener('click', () => {
     const fragment = document.createDocumentFragment();
