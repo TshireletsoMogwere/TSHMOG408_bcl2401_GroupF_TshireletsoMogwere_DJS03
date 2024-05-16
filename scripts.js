@@ -67,7 +67,7 @@ document.querySelector('[data-header-search]').addEventListener('click', () => {
 
 document.querySelector('[data-search-form]').addEventListener('submit', event => {
     event.preventDefault();
-    const formData = new formData(event.target);
+    const formData = new FormData(event.target);
     const filters = Object.fromEntries(formData);
     handleBookSearch(filters);
     document.querySelector('[data-search-overlay]').open = false;
