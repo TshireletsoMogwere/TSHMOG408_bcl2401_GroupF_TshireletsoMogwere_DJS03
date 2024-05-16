@@ -25,6 +25,8 @@ function renderBooks(bookList) {
     bookList.slice(0, BOOKS_PER_PAGE).forEach(book => {
         const element = createPreviewButton(book);
         fragment.appendChild(element);
+        authorsOption();
+        createGenreOption();
     });
 
 // // Appends initial previews to the document
@@ -40,6 +42,35 @@ function updateShowMoreButton() {
     button.disabled = remaining <= 0;
 }
 
+
+function authorsOption() {
+    const authorsHtml = document.createDocumentFragment()
+    const firstAuthorElement = createOptionElement('any', "All Authors");
+    authorsHtml.appendChild(firstAuthorElement);
+
+    for (const [id, name] of Object.entries(authors)) {
+        authorsHtml.appendChild(createOptionElement(id, name));
+    }
+    document.querySelector('[data-search-authors]').appendChild(authorsHtml);
+}
+
+function createGenreOption() {
+    const genreHtml = document.createDocumentFragment()
+    const firstGenreElement = createOptionElement('any', "All Genres");
+    genreHtml.appendChild(firstGenreElement);
+
+    for (const [id, name] of Object.entries(genres)) {
+        genreHtml.appendChild(createOptionElement(id, name));
+}
+document.querySelector('[data-search-genres]').appendChild(genreHtml);
+}
+
+function createOptionElement(value, name) {
+    const element = document.createElement('option');
+    element.value = value;
+    element.innerText = name;
+    return element
+}
 function handleBookSearch(filters) {
     const result = books.filter(book => {
         const genreMatch = filters.genre === 'any' || book.genres.includes(filters.genre);
