@@ -4,6 +4,11 @@ import { books, authors, genres, BOOKS_PER_PAGE } from './data.js';
 let page = 1;
 let matches = books;
 
+/**
+ * 
+ * @param {*} book 
+ * @returns 
+ */
 // Iterates through matches and creates preview elements for first page
    function createPreviewButton(book) {
  const { id, image, title, author } = book;
@@ -19,6 +24,11 @@ let matches = books;
 
   return element;
 }
+
+/**
+ * 
+ * @param {*} bookList 
+ */
 
 function renderBooks(bookList) {
     const fragment = document.createDocumentFragment();
@@ -65,12 +75,25 @@ function createGenreOption() {
 document.querySelector('[data-search-genres]').appendChild(genreHtml);
 }
 
+/**
+ * 
+ * @param {*} value 
+ * @param {*} name 
+ * @returns 
+ */
+
 function createOptionElement(value, name) {
     const element = document.createElement('option');
     element.value = value;
     element.innerText = name;
     return element
 }
+
+/**
+ * 
+ * @param {*} filters 
+ */
+
 function handleBookSearch(filters) {
     const result = books.filter(book => {
         const genreMatch = filters.genre === 'any' || book.genres.includes(filters.genre);
